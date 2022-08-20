@@ -1,7 +1,9 @@
 package org.example;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.dao.mapper.UserDoMapper;
 import org.example.dao.mapper.UserMapper;
+import org.example.dao.po.TbUserDo;
 import org.example.dao.po.TbUserPo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,18 @@ public class ApplicationTest {
     @Autowired
     UserMapper mapper;
 
+    @Autowired
+    UserDoMapper daoMapper;
+
     @Test
     public void testSearchByName(){
         List<TbUserPo> tbUserPos =mapper.searchByName("shamate");
         log.info("查询结果：{}",tbUserPos);
+    }
+
+    @Test
+    public void searchByAgeRangeTest(){
+        List<TbUserDo> userDos=daoMapper.searchByAgeRange("25","34");
+        log.info("查询结果：{}",userDos);
     }
 }
