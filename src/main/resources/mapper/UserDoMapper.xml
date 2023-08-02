@@ -12,4 +12,10 @@
         where age &gt;= #{min,jdbcType=VARCHAR}
         and age &lt;= #{max,jdbcType=VARCHAR}
     </select>
+    <update id="update" parameterType="org.example.dao.po.TbUserDo">
+        update tb_test_01
+        set name = #{name,jdbcType=VARCHAR},
+        age = #{age,jdbcType=VARCHAR}
+        where mobile = #{mobile,jdbcType=VARCHAR}
+    </update>
 </mapper>

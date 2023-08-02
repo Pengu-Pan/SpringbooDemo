@@ -18,9 +18,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/search")
+    @GetMapping("/search")
     public Result printInfo(@RequestBody User user){
-        log.info("查询用户信息，输入：{}",user);
+        log.info("查询用户信息，输入：{}",user.getName());
         List<User> users=userService.searchUsersByName(user.getName());
         log.info("查询用户结果，输出：{}",users);
 
@@ -29,4 +29,31 @@ public class UserController {
         }
         return new Result(ReturnCode.SUCCESS,users);
     }
+
+    @GetMapping("/add")
+    public Result addUser(@RequestBody User user){
+        log.info("插入用户，输入：{}",user);
+        int returnNum;
+        returnNum=userService.add(user.getMobile(),user.getName(),user.getAge());
+        log.info("插入返回结果，输出：{}",returnNum);
+
+        if(returnNum == 0){
+            return new Result(ReturnCode.SUCCESS);
+        }
+        return new Result(ReturnCode.FAIL);
+    }
+
+    @GetMapping("/update")
+    public Result update(@RequestBody User user){
+        log.info("更新用户信息，输入：{}",user);
+        int returnNum;
+        returnNum=userService.update(user.getMobile(),user.getName(),user.getAge());
+        log.info("更新返回结果，输出：{}",returnNum);
+
+        if(returnNum == 0){
+            return new Result(ReturnCode.SUCCESS);
+        }
+        return new Result(ReturnCode.FAIL);
+    }
+
 }

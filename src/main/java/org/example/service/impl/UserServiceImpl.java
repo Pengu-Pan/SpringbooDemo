@@ -4,7 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.common.exception.BusinessException;
 import org.example.common.exception.ExceptionCode;
 import org.example.common.exception.SystemException;
+import org.example.dao.mapper.UserDoMapper;
 import org.example.dao.mapper.UserMapper;
+import org.example.dao.po.TbUserDo;
 import org.example.dao.po.TbUserPo;
 import org.example.pojo.User;
 import org.example.service.api.UserService;
@@ -23,6 +25,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    UserDoMapper doMapper;
 
     @Override
     public List<User> searchUsersByName(String name) {
@@ -49,5 +53,50 @@ public class UserServiceImpl implements UserService {
             }
         }
         return users;
+    }
+
+    @Override
+    public int add(String mobile, String name, String age) {
+        if(StringUtils.isEmpty(mobile)){
+            throw new BusinessException(ExceptionCode.INPUT_NULL_EXP);
+        }
+
+        TbUserDo row = new TbUserDo();
+        row.setMobile(mobile);
+        row.setAge(age);
+        row.setName(name);
+
+        int returnCode;
+        try{
+            doMapper.add(row);
+            returnCode = 0;
+        }catch (Exception ex){
+            returnCode = -1;
+            throw new SystemException(ExceptionCode.SQL_EXEC_EXP);
+        }
+
+        return returnCode;
+    }
+
+    @Override
+    public int update(String mobile, String name, String age) {
+        if(StringUtils.isEmpty(mobile)){
+            throw new BusinessException(ExceptionCode.INPUT_NULL_EXP);
+        }
+        TbUserDo row = new TbUserDo();
+        row.setMobile(mobile);
+        row.setAge(age);
+        row.setName(name);
+
+        int returnCode;
+        try{
+            doMapper.update(row);
+            returnCode = 0;
+        }catch (Exception ex){
+            returnCode = -1;
+            throw new SystemException(ExceptionCode.SQL_EXEC_EXP);
+        }
+
+        return returnCode;
     }
 }

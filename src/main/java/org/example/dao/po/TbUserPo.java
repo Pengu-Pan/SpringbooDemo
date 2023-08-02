@@ -1,8 +1,5 @@
 package org.example.dao.po;
 
-import lombok.Data;
-
-@Data
 public class TbUserPo {
     private String mobile;
 
