@@ -24,7 +24,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
-    <spring-cloud.version>Hoxton.SR10</spring-cloud.version>
   </properties>
 
   <dependencies>
@@ -48,10 +47,13 @@
       <artifactId>spring-test</artifactId>
     </dependency>
     <!-- springCloud -->
+    <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-dependencies</artifactId>
-      <version>${spring-cloud.version}</version>
+      <version>2022.0.4</version>
+      <type>pom</type>
+      <scope>import</scope>
     </dependency>
     <dependency>
       <groupId>org.postgresql</groupId>

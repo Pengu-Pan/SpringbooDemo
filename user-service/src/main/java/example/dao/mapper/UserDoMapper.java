@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface UserDoMapper {
 
-    List<TbUserDo> searchByAgeRange(String min, String max);
+    List<TbUserDo> searchByAgeRange(String min, String max); // todo 加上xml文件的
 
     @Insert("INSERT into tb_test_01 (mobile,name,age)VALUES(#{mobile},#{name},#{age})")
     int add(TbUserDo row);

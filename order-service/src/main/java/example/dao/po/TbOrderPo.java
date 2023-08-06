@@ -1,5 +1,6 @@
 package example.dao.po;
 
+import example.pojo.User;
 import lombok.Data;
 
 @Data
@@ -9,5 +10,5 @@ public class TbOrderPo {
     private String name;
     private Integer num;
     private Long userId;
-    private TbUserPo user;
+    private User user;
 }

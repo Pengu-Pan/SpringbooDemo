@@ -5,9 +5,7 @@ import example.pojo.User;
 import java.util.List;
 
 public interface UserService {
-    List<User> searchUsersByName(String name);
 
-    int add(String mobile, String name, String age);
+    User queryById(Long id);
 
-    int update(String mobile, String name, String age);
 }
