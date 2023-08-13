@@ -17,7 +17,6 @@ public class OrderApplication {
      * 创建RestTemplate并注入Spring容器
      */
     @Bean
-    @LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
@@ -26,5 +25,4 @@ public class OrderApplication {
     public IRule randomRule() {
         return new RandomRule();
     }*/
-}
 }

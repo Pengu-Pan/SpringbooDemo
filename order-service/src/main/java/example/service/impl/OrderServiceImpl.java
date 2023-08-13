@@ -3,22 +3,25 @@ package example.service.impl;
 
 import example.dao.mapper.OrderMapper;
 import example.dao.po.TbOrderPo;
-import example.dao.po.TbUserPo;
 import example.pojo.Order;
 import example.pojo.User;
 import example.service.api.OrderService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.client.RestTemplate;
 
+@Slf4j
 @Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMapper orderMapper;
 
+    @Value("${userServiceUrl}")
+    private String userServiceUrl;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -29,7 +32,8 @@ public class OrderServiceImpl implements OrderService {
         TbOrderPo orderPo = orderMapper.findById(orderId);
         // 2.利用RestTemplate发起http请求，查询用户
         // 2.1.url路径
-        String url = "http://userservice/user/" + orderPo.getUserId();
+        String url = userServiceUrl + orderPo.getUserId();
+        log.info("url:"+url);
         // 2.2.发送http请求，实现远程调用
         User user = restTemplate.getForObject(url, User.class);
         // 3.封装user到Order
