@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMapper orderMapper;
 
-    @Value("${userServiceUrl}")
+    @Value("${userServiceUrl}")  // apollo配置：http://userservice/user/
     private String userServiceUrl;
 
     @Autowired
@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order queryOrderById(Long orderId){
-        // 1.查询订单 todo 优化异常
+        // 1.查询订单
         TbOrderPo orderPo = orderMapper.findById(orderId);
         // 2.利用RestTemplate发起http请求，查询用户
         // 2.1.url路径

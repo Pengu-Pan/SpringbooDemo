@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User queryById(Long id) {
-        // todo 异常
         TbUserPo tbUserPo= tbUserPoMapper.findById(id);
         User user = new User();
         BeanUtils.copyProperties(tbUserPo,user);

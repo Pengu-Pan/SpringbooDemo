@@ -2,6 +2,7 @@ package example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,8 +16,11 @@ public class OrderApplication {
 
     /**
      * 创建RestTemplate并注入Spring容器
+     * 通过RestTemplate来发送http请求。
      */
+
     @Bean
+    @LoadBalanced //负载均衡
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
