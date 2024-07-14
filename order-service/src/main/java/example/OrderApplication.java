@@ -1,5 +1,6 @@
 package example;
 
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -8,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 @SpringBootApplication
+@EnableApolloConfig
 public class OrderApplication {
     public static void main(String[] args) {
 

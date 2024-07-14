@@ -22,5 +22,9 @@ logging:
   pattern:
     dateformat: MM-dd HH:mm:ss:SSS
 apollo:
+  meta: http://localhost:8080
   bootstrap:
     enabled: true
+env: DEV
+app:
+  id: orderQuery
